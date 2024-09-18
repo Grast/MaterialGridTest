@@ -3,33 +3,12 @@
     import { writable } from "svelte/store";
     import { theme } from "../Modules/theme";
 
-	export let columnList = writable([
-		{ key: "id", 					text: "ID", 			width: "100px", 	align: "right", 	type: "number", 	fixed: true, 	format: null }, 
-		{ key: "title", 				text: "제품명", 		width: "250px", 	align: "left", 		type: "string", 	fixed: false,	format: null }, 
-		{ key: "description", 			text: "설명", 			width: "400px", 	align: "left", 		type: "string", 	fixed: false,	format: null }, 
-		{ key: "category", 				text: "분류", 			width: "100px", 	align: "left", 		type: "string", 	fixed: false,	format: null }, 
-		{ key: "price", 				text: "가격", 			width:  "80px", 	align: "right", 	type: "number", 	fixed: false,	format: null }, 
-		{ key: "discountPercentage", 	text: "할인율", 		width:  "60px", 	align: "right", 	type: "number", 	fixed: false,	format: null }, 
-		{ key: "rating", 				text: "평점", 			width:  "60px",	 	align: "right", 	type: "number", 	fixed: false,	format: null }, 
-		{ key: "stock", 				text: "재고", 			width:  "60px",	 	align: "right", 	type: "number", 	fixed: false,	format: null }, 
-		{ key: "tags", 					text: "태그", 			width: "200px", 	align: "left", 		type: "string", 	fixed: false,	format: null }, 
-		{ key: "brand", 				text: "브랜드", 		width: "200px", 	align: "left", 		type: "string", 	fixed: false,	format: null }, 
-		{ key: "sku", 					text: "SKU", 			width: "100px", 	align: "left", 		type: "string", 	fixed: false,	format: null }, 
-		{ key: "weight", 				text: "가중치", 		width:  "50px",	 	align: "right", 	type: "number", 	fixed: false,	format: null }, 
-		{ key: "dimensions", 			text: "부피", 			width: "200px", 	align: "left", 		type: "string", 	fixed: false,	format: (/** @type {{ width: Number, height: Number, depth: Number }} */ value) => `${value?.width || 0}w * ${value?.height || 0}h * ${value?.depth || 0}d` }, 
-		{ key: "warrantyInformation", 	text: "보증정보", 		width: "200px", 	align: "left", 		type: "string", 	fixed: false,	format: null }, 
-		{ key: "shippingInformation", 	text: "배송정보", 		width: "200px", 	align: "left", 		type: "string", 	fixed: false,	format: null }, 
-		{ key: "avilabilityStatus", 	text: "가용성상태", 	width: "100px", 	align: "left", 		type: "string", 	fixed: false,	format: null }, 
-		{ key: "returnPolicy", 			text: "환불정책", 		width: "200px", 	align: "left", 		type: "string", 	fixed: false,	format: null }, 
-		{ key: "minimumOrderQuantity", 	text: "최소주문갯수", 	width: "120px", 	align: "right", 	type: "string", 	fixed: false,	format: null }, 
-		{ key: "images", 				text: "이미지", 		width: "240px", 	align: "left", 		type: "string", 	fixed: false,	format: null }, 
-		{ key: "thumbnail", 			text: "썸네일", 		width: "240px", 	align: "left", 		type: "string", 	fixed: false,	format: null }
-	]);
-	export let dataList = writable([]);
-	export let selectedDataList = writable([]);
-	export let keyColumn = "id";
-	export let viewportWidth = "100%";
-	export let viewportHeight = "550px";
+	export let columnList;
+	export let dataList;
+	const selectedDataList = writable([]);
+	export let keyColumn;
+	export let viewportWidth;
+	export let viewportHeight;
 
 	export const initData = async () => setData(await fetch("./products.json").then(res => res.json()).then(fetchResultList => fetchResultList.products));
 	export const setData = paramDataList => dataList.set(paramDataList);
